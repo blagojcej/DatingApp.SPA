@@ -1,3 +1,4 @@
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
@@ -51,7 +52,16 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver';
         TabsModule.forRoot(),
         NgxGalleryModule
     ],
-    providers: [AuthService, AlertifyService, AuthGuard, UserService, MemberDetailResolver, MemberListResolver, MemberEditResolver],
+    providers: [
+        AuthService,
+        AlertifyService,
+        AuthGuard,
+        UserService,
+        MemberDetailResolver,
+        MemberListResolver,
+        MemberEditResolver,
+        PreventUnsavedChanges
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

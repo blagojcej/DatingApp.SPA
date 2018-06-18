@@ -9,16 +9,16 @@ import { JwtHelper } from 'angular2-jwt';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  jwtHelper : JwtHelper=new JwtHelper();
+  jwtHelper: JwtHelper = new JwtHelper();
 
   constructor(private authService: AuthService) {
 
   }
 
   ngOnInit() {
-    const token=localStorage.getItem('token');
-    if(token){
-      this.authService.decodedToken=this.jwtHelper.decodeToken(token);
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.authService.decodedToken = this.jwtHelper.decodeToken(token);
     }
   }
 }

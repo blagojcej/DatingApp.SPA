@@ -19,10 +19,11 @@ export class MemberDetailComponent implements OnInit {
 
   ngOnInit() {
     // Commented after adding route resolvers
-    //Also removed all save conditional operators (?) in model
+    // Also removed all save conditional operators (?) in model
     // loadUser()
     this.route.data.subscribe(data => {
       this.user = data['user'];
+      console.log(this.user);
     });
 
     this.galleryOptions = [
@@ -42,15 +43,16 @@ export class MemberDetailComponent implements OnInit {
     const imageUrls = [];
 
     for (let i = 0; i < this.user.photos.length; i++) {
+      // console.log(this.user.photos[i].url);
       imageUrls.push({
         small: this.user.photos[i].url,
         medium: this.user.photos[i].url,
         big: this.user.photos[i].url,
         description: this.user.photos[i].description
       });
-
-      return imageUrls;
     }
+
+    return imageUrls;
   }
 
   //member/3

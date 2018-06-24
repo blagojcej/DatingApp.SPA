@@ -13,7 +13,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav" *ngIf="loggedIn()">
         <li routerLinkActive="active">
-          <a [routerLink]="['/members']" >Matches</a>
+          <a [routerLink]="['/members']">Matches</a>
         </li>
         <li routerLinkActive="active">
           <a [routerLink]="['/lists']">Lists</a>
@@ -34,6 +34,9 @@
       </form>
 
       <ul *ngIf="loggedIn()" class="nav navbar-nav navbar-right">
+        <li>
+          <img src="{{authService.currentUser?.photoUrl}}" alt="">
+        </li>
         <!-- <li><a (click)="logout()">Logout</a></li> -->
         <li class="dropdown" dropdown>
           <a (click)="false" class="dropdown-toggle" dropdownToggle>Welcome {{authService.decodedToken?.unique_name | titlecase}}
@@ -41,7 +44,7 @@
           </a>
           <ul class="dropdown-menu" *dropdownMenu>
             <li>
-              <a [routerLink]="['/member/edit']" >
+              <a [routerLink]="['/member/edit']">
                 <i class="fa fa-user"></i> Edit Profile</a>
             </li>
             <li role="separator" class="divider"></li>

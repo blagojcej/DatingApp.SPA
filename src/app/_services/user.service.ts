@@ -27,6 +27,10 @@ export class UserService {
         return this.authHttp.put(this.baseUrl + 'users/' + id, user).catch(this.handleError);
     }
 
+    setMainPhoto(userId: number, photoId: number) {
+        return this.authHttp.post(this.baseUrl + 'users/' + userId + '/photos/' + photoId + '/setMain', {}).catch(this.handleError);
+    }
+
     getUser(id): Observable<User> {
         return this.authHttp.get(this.baseUrl + 'users/' + id)
             .map(response => <User>response.json())

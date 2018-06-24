@@ -27,6 +27,8 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
     declarations: [
@@ -40,7 +42,8 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver';
         MessagesComponent,
         MemberCardComponent,
         MemberDetailComponent,
-        MemberEditComponent
+        MemberEditComponent,
+        PhotoEditorComponent
     ],
     imports: [
         BrowserModule,
@@ -50,7 +53,8 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver';
         RouterModule.forRoot(appRoutes),
         AuthModule,
         TabsModule.forRoot(),
-        NgxGalleryModule
+        NgxGalleryModule,
+        FileUploadModule
     ],
     providers: [
         AuthService,

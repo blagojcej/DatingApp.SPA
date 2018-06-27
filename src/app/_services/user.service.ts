@@ -30,6 +30,9 @@ export class UserService {
     setMainPhoto(userId: number, photoId: number) {
         return this.authHttp.post(this.baseUrl + 'users/' + userId + '/photos/' + photoId + '/setMain', {}).catch(this.handleError);
     }
+    deletePhoto(userId: number, id: number) {
+        return this.authHttp.delete(this.baseUrl + 'users/' + userId + '/photos/' + id).catch(this.handleError);
+    }
 
     getUser(id): Observable<User> {
         return this.authHttp.get(this.baseUrl + 'users/' + id)

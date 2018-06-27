@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { User } from '../_models/user';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class AuthService {
@@ -14,8 +15,14 @@ export class AuthService {
     decodedToken: any;
     currentUser: User;
     jwtHelper: JwtHelper = new JwtHelper();
+    private photoUrl=new BehaviorSubject('../../assets/user.png');
+    currentPhotoUrl=this.photoUrl.asObservable();
 
     constructor(private http: Http) { }
+
+    changeMemberPhoto(photoUrl: string) {
+        this.photoUrl.next(photoUrl);
+    }
 
     login(model: any) {
         // const headers = new Headers({ 'Content-type': 'application/json' });
@@ -28,9 +35,10 @@ export class AuthService {
                     localStorage.setItem('token', user.tokenString);
                     localStorage.setItem('user', JSON.stringify(user.user));
                     this.decodedToken = this.jwtHelper.decodeToken(user.tokenString);
-                    this.currentUser=user.user;
+                    this.currentUser = user.user;
                     // console.log(this.decodedToken);
                     this.userToken = user.tokenString;
+                    this.changeMemberPhoto(this.currentUser.photoUrl);
                 }
             }).catch(this.handleError);
     }

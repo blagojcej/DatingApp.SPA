@@ -35,7 +35,8 @@
 
       <ul *ngIf="loggedIn()" class="nav navbar-nav navbar-right">
         <li>
-          <img src="{{authService.currentUser?.photoUrl}}" alt="">
+          <!-- <img src="{{authService.currentUser?.photoUrl}}" alt=""> -->
+          <img src="{{ photoUrl }}" alt="">
         </li>
         <!-- <li><a (click)="logout()">Logout</a></li> -->
         <li class="dropdown" dropdown>

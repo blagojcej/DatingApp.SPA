@@ -17,7 +17,7 @@ import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertifyService } from './_services/alertify.service';
-import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
@@ -55,7 +55,8 @@ import { FileUploadModule } from 'ng2-file-upload';
         TabsModule.forRoot(),
         NgxGalleryModule,
         FileUploadModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        BsDatepickerModule.forRoot()
     ],
     providers: [
         AuthService,

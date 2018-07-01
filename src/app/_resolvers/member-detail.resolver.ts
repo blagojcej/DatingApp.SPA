@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import { AlertifyService } from './../_services/alertify.service';
 import { UserService } from './../_services/user.service';
 import { Resolve, Router, ActivatedRouteSnapshot } from "@angular/router";
@@ -17,6 +17,6 @@ export class MemberDetailResolver implements Resolve<User> {
             this.alertifyService.error('Problem retrieving data!');
             this.router.navigate(['/members']);
             return Observable.of(null);
-        })
+        });
     }
 }

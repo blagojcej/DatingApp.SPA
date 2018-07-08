@@ -1,5 +1,5 @@
+import { Observable } from 'rxjs/Rx';
 import { PaginatedResult } from './../_models/pagination';
-import { Observable } from 'rxjs/Observable';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
@@ -16,11 +16,19 @@ export class UserService {
     constructor(private authHttp: AuthHttp) { }
 
     // getUsers(page?: number, itemsPerPage?: number): Observable<User[]> {
-    getUsers(page?: number, itemsPerPage?: number, userParams?: any) {
+    getUsers(page?: number, itemsPerPage?: number, userParams?: any, likeParams?: string) {
         const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
         let queryString = '?';
         if (page != null && itemsPerPage != null) {
             queryString += 'pageNumber=' + page + '&pageSize=' + itemsPerPage + '&';
+        }
+
+        if (likeParams === 'Likers') {
+            queryString+='Likers=true&';
+        }
+
+        if (likeParams === 'Likees') {
+            queryString+='Likees=true&';
         }
 
         if (userParams != null) {
@@ -59,6 +67,10 @@ export class UserService {
         return this.authHttp.delete(this.baseUrl + 'users/' + userId + '/photos/' + id).catch(this.handleError);
     }
 
+    sendLike(id: number, recipientId: number) {
+        return this.authHttp.post(this.baseUrl + 'users/' + id + '/like/' + recipientId, {}).catch(this.handleError);
+    }
+
     getUser(id): Observable<User> {
         return this.authHttp.get(this.baseUrl + 'users/' + id)
             .map(response => <User>response.json())
@@ -76,6 +88,11 @@ export class UserService {
 
     private handleError(error: any) {
         // console.log(error);
+
+        if (error.status === 400) {
+            return Observable.throw(error._body);
+        }
+
         const applicationError = error.headers.get('Application-Error');
         if (applicationError) {
             return Observable.throw(applicationError);

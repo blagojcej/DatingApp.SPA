@@ -55,13 +55,13 @@ export class MemberDetailComponent implements OnInit {
     return imageUrls;
   }
 
-  //member/3
+  // member/3
   loadUser() {
     this.userService.getUser(this.route.snapshot.params['id'])
       .subscribe((user: User) => {
-        this.user = user
+        this.user = user;
       }, error => {
-        this.alertifyService.error(error)
+        this.alertifyService.error(error);
       });
   }
 

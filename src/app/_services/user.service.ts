@@ -106,6 +106,24 @@ export class UserService {
             }).catch(this.handleError);
     }
 
+    sendMessage(id: number, message: Message) {
+        return this.authHttp.post(this.baseUrl + 'users/' + id + '/messages', message)
+            .map((response: Response) => {
+                return response.json();
+            })
+            .catch(this.handleError);
+    }
+
+    deleteMessage(id: number, userId: number) {
+        return this.authHttp.post(this.baseUrl + 'users/' + userId + '/messages/' + id, {})
+            .map(response => { }).catch(this.handleError);
+    }
+
+    markAsRead(userId: number, id: number) {
+        return this.authHttp.post(this.baseUrl + 'users/' + userId + '/messages/' + id + '/read', {})
+            .subscribe();
+    }
+
     // private jwt() {
     //     const token = localStorage.getItem('token');
     //     if (token) {

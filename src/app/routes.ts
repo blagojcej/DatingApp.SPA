@@ -1,3 +1,4 @@
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { MessagesResolver } from './_resolvers/message.resolver';
 import { ListsResolver } from './_resolvers/lists.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
@@ -29,6 +30,7 @@ export const appRoutes: Routes = [
             },
             { path: 'messages', component: MessagesComponent, resolve: { messages: MessagesResolver } },
             { path: 'lists', component: ListsComponent, resolve: { users: ListsResolver } },
+            { path: 'admin', component: AdminPanelComponent, data: { roles: ['Admin', 'Moderator'] } },
         ]
     },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }

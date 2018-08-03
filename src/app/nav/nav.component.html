@@ -21,6 +21,9 @@
         <li routerLinkActive="active">
           <a [routerLink]="['/messages']">Messages</a>
         </li>
+        <li *appHasRole="['Moderator', 'Admin']" routerLinkActive="active">
+          <a [routerLink]="['/admin']">Admin</a>
+        </li>
       </ul>
 
       <form *ngIf="!loggedIn()" #loginForm="ngForm" class="navbar-form navbar-right" (ngSubmit)="login()">

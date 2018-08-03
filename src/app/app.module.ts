@@ -1,3 +1,7 @@
+import { AdminService } from './_services/admin.service';
+import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
+import { HasRoleDirective } from './_directives/hasRole.directive';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { MessagesResolver } from './_resolvers/message.resolver';
 import { ListsResolver } from './_resolvers/lists.resolver';
@@ -33,6 +37,8 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -49,7 +55,11 @@ import { TimeAgoPipe } from 'time-ago-pipe';
         MemberEditComponent,
         PhotoEditorComponent,
         TimeAgoPipe,
-        MemberMessagesComponent
+        MemberMessagesComponent,
+        AdminPanelComponent,
+        UserManagementComponent,
+        PhotoManagementComponent,
+        HasRoleDirective
     ],
     imports: [
         BrowserModule,
@@ -64,7 +74,8 @@ import { TimeAgoPipe } from 'time-ago-pipe';
         ReactiveFormsModule,
         BsDatepickerModule.forRoot(),
         PaginationModule.forRoot(),
-        ButtonsModule.forRoot()
+        ButtonsModule.forRoot(),
+        HttpClientModule
     ],
     providers: [
         AuthService,
@@ -76,7 +87,8 @@ import { TimeAgoPipe } from 'time-ago-pipe';
         MemberEditResolver,
         PreventUnsavedChanges,
         ListsResolver,
-        MessagesResolver
+        MessagesResolver,
+        AdminService
     ],
     bootstrap: [AppComponent]
 })

@@ -1,3 +1,4 @@
+import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
 import { AdminService } from './_services/admin.service';
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import { HasRoleDirective } from './_directives/hasRole.directive';
@@ -24,7 +25,7 @@ import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertifyService } from './_services/alertify.service';
-import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule, ModalModule } from 'ngx-bootstrap';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
@@ -38,7 +39,6 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { FileUploadModule } from 'ng2-file-upload';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -59,7 +59,8 @@ import { HttpClientModule } from '@angular/common/http';
         AdminPanelComponent,
         UserManagementComponent,
         PhotoManagementComponent,
-        HasRoleDirective
+        HasRoleDirective,
+        RolesModalComponent
     ],
     imports: [
         BrowserModule,
@@ -75,7 +76,7 @@ import { HttpClientModule } from '@angular/common/http';
         BsDatepickerModule.forRoot(),
         PaginationModule.forRoot(),
         ButtonsModule.forRoot(),
-        HttpClientModule
+        ModalModule.forRoot()
     ],
     providers: [
         AuthService,
@@ -89,6 +90,9 @@ import { HttpClientModule } from '@angular/common/http';
         ListsResolver,
         MessagesResolver,
         AdminService
+    ],
+    entryComponents: [
+        RolesModalComponent
     ],
     bootstrap: [AppComponent]
 })

@@ -2,7 +2,7 @@ import { AuthService } from './../_services/auth.service';
 import { Directive, Input, ViewContainerRef, TemplateRef, OnInit } from '@angular/core';
 
 @Directive({
-  // To access this directive as structural directive we need to add *appHasRole wihotut parameters
+  // To access this directive as structural directive we need to add *appHasRole with or wihotut parameters into the template(HTML) where we're using it
   // (transforms this element to <ng-template>)
   selector: '[appHasRole]'
 })
